@@ -14,3 +14,13 @@
 ### Zadanie 3
 1. Stwórz nową klasę AdditionTestsWithAssertJ.
 2. Napisz w niej analogiczne testy jak w zadaniu 2, lecz korzystając z biblioteki AssertJ.
+
+### Zadanie 4
+Napisz testy, a następnie implementację dla poniższego user story:
+
+Jako użytkownik chcę mieć możliwość otrzymania dowolnej liczby z ciągu Fibonacciego do setnego elementu.
+
+### Zadanie 5
+Napisz testy, a następnie implementację dla poniższego user story:
+
+Jako użytkownik chcę znaleźć wszystkie palindromy w moim tekście.
