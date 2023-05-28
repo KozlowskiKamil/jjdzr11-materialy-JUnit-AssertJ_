@@ -24,3 +24,9 @@ Jako użytkownik chcę mieć możliwość otrzymania dowolnej liczby z ciągu Fi
 Napisz testy, a następnie implementację dla poniższego user story:
 
 Jako użytkownik chcę znaleźć wszystkie palindromy w moim tekście.
+
+### Zadanie 6
+Napisz testy, a następnie implementację dla poniższego user story:
+
+Jako administrator chciałbym mieć możliwość przeglądania i filtrowania po modułach logów z aplikacji.
+Dane powinny być tylko do odczytu i powinny zawierać oznaczenie czasowe, moduł z którego pochodzą, a także informację na temat zdarzenia.
