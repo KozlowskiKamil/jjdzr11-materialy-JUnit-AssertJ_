@@ -8,13 +8,19 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FirstTest {
 
 
 
-
+    @Test
+    public void assertFirst() {
+        assertThat(2 + 2).isEqualTo(4);
+        assertThat(List.of("abc", "bbb", "kkk")).hasSize(3);
+    }
 
 
     @Test
