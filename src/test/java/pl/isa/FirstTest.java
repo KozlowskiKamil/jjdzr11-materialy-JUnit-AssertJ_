@@ -67,6 +67,4 @@ public class FirstTest {
         assertEquals("Abc", str);
     }
 
-
-
 }
