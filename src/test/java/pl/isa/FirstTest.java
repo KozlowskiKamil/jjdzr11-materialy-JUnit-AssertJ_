@@ -1,5 +1,6 @@
 package pl.isa;
 
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FirstTest {
+
+
+
 
 
 
@@ -49,7 +53,6 @@ public class FirstTest {
     public void fiveTest(String str){
        assertEquals(3, str.length());
        assertEquals("Abc", str);
-
     }
 
     @ParameterizedTest
@@ -57,5 +60,7 @@ public class FirstTest {
     public void sixTest(String str){
         assertEquals("Abc", str);
     }
+
+
 
 }

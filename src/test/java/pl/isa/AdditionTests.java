@@ -2,12 +2,32 @@ package pl.isa;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+
 public class AdditionTests {
+
+    private static Stream<ValuesListWithSum> provideListOfMultipleIntValues() {
+          return Stream.of(
+                  new ValuesListWithSum(5, 2),
+                  new ValuesListWithSum(Integer.MAX_VALUE, Integer.MIN_VALUE),
+                  new ValuesListWithSum(4, 8));
+    }
+
+    private static int[] provideArrayOfMultipleIntValues() {
+        int[] ints = {1,2,3};
+        return ints;
+    }
+
 
     @Test
     public void test() {
@@ -44,5 +64,27 @@ public class AdditionTests {
         assertEquals(value, Addition.add(value));
     }
 
+    @ParameterizedTest
+    @MethodSource("provideListOfMultipleIntValues")
+    public void add_multipleValues_returnsSumOfValues(ValuesListWithSum values) {
+        assertEquals(values.getSum(), Addition.add(values.values));
+    }
 
+        private static class ValuesListWithSum {
+        int[] values;
+
+        ValuesListWithSum(int ... values) {
+            this.values = values;
+        }
+        int getSum() {
+            return Arrays.stream(values).reduce(0, Integer::sum);
+        }
+
+            @Override
+            public String toString() {
+                return "ValuesListWithSum{" +
+                        "values=" + Arrays.toString(values) +
+                        '}';
+            }
+        }
 }
