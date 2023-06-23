@@ -1,5 +1,7 @@
 package pl.isa;
 
+import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -41,6 +43,18 @@ public class AdditionTests {
         assertEquals("Numbers exceed max", exception.getMessage(), "Exception message is incorrect");
     }
 
+    @Test
+    public void add_maxValueShouldThrowUnsupportedOperationExceptionAJ() {
+        Exception catchException = catchException(() -> Addition.add(Integer.MAX_VALUE, 2));
+        assertThat(catchException)
+                .isExactlyInstanceOf(UnsupportedOperationException.class)
+                .hasMessage("Numbers exceed max");
+        assertThatExceptionOfType(UnsupportedOperationException.class)
+                .isThrownBy(() -> Addition.add(Integer.MAX_VALUE,2));
+    }
+
+
+
 
     @Test
     public void add_minValueShouldThrowUnsupportedOperationException() {
@@ -54,6 +68,11 @@ public class AdditionTests {
     }
 
     @Test
+    public void noValueGivern_Retuns0AJ() {
+        assertThat(Addition.add()).as("Shuld 0").isEqualTo(0);
+    }
+
+    @Test
     public void singleValue() {
         assertEquals(7, Addition.add(7), "Shuld be 7");
     }
@@ -64,10 +83,24 @@ public class AdditionTests {
         assertEquals(value, Addition.add(value));
     }
 
+
+    @ParameterizedTest
+    @ValueSource(ints = {Integer.MAX_VALUE - 1, Integer.MIN_VALUE + 1, Integer.MAX_VALUE, Integer.MIN_VALUE, -4, 1, 4, 5, 7})
+    public void parametrValueAJ(int value){
+        assertThat(Addition.add(value)).as("Shuld return the same value").isEqualTo(2);
+    }
+
+
     @ParameterizedTest
     @MethodSource("provideListOfMultipleIntValues")
     public void add_multipleValues_returnsSumOfValues(ValuesListWithSum values) {
         assertEquals(values.getSum(), Addition.add(values.values));
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideListOfMultipleIntValues")
+            public void add_multipleValues_returnsSumOfValuesAJ(ValuesListWithSum values) {
+        assertThat(Addition.add(values.values)).isEqualTo(values.getSum());
     }
 
         private static class ValuesListWithSum {
